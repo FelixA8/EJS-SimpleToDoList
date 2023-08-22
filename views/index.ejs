@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/main.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <title>Mini-ToDoList</title>
+</head>
+<body>
+    <h1>To Do List</h1>
+    <h2><%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: '2-digit'}).format(new Date()) %></h2>
+    <% if(locals.listOfTodo) { %>
+        <% if(listOfTodo.length === 0) { %>
+            <p>Nothing to do today...</p>
+        <% } else { %>
+                <ul>
+                    <% for(var i = 0; i < listOfTodo.length ; i++) { %>
+                        <li><div class="list-container">
+                            <form>
+                                <input type="checkbox"><%= listOfTodo[i] %></input>
+                            </form>
+                        </div></li>
+                    <% } %>
+                </ul>
+                
+             <%}%>
+    <% } %>
+    <div class="container">
+        <form action="/submit" method="POST" id="submit">
+            <input type="text" name="ToDoChild" placeholder="set your to-do">
+            <input type="submit" value="Set to do list">
+        </form>
+        <form action="/delete" method="POST" id="delete">
+            <input type="submit" value="Delete All List">
+        </form>
+    </div>
+    
+    <div class="container">
+        
+    </div>
+    
+</body>
+</html>
